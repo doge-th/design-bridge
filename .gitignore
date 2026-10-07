@@ -1,0 +1,7 @@
+node_modules/
+config.json
+tasks.json
+recordings/
+bridge.log
+*.log
+.DS_Store

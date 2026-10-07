@@ -1,0 +1,27 @@
+{
+  "name": "design-bridge",
+  "version": "0.1.0",
+  "description": "Let MiniMax Design render video through YOUR OWN video API key, by bridging its local gateway to any OpenPlatform-compatible endpoint. Zero dependencies.",
+  "type": "module",
+  "main": "bridge.mjs",
+  "bin": {
+    "design-bridge": "bridge.mjs"
+  },
+  "scripts": {
+    "start": "node bridge.mjs",
+    "record": "node bridge.mjs --record",
+    "test": "node --test test/bridge.test.mjs"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "minimax",
+    "minimax-design",
+    "hailuo",
+    "video-generation",
+    "proxy",
+    "byok"
+  ],
+  "license": "MIT"
+}
