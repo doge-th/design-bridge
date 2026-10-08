@@ -6,6 +6,8 @@
 [![Node](https://img.shields.io/badge/node-%3E%3D18-green)](#)
 [![Dependencies](https://img.shields.io/badge/dependencies-0-blue)](#)
 
+English | [中文](#让-minimax-design-用你自己的视频-api-key-出片)
+
 MiniMax Design（桌面端 agentic 视频创作工具）默认把所有视频生成请求发给
 MiniMax 官方云网关，扣订阅额度。`design-bridge` 是一个跑在本机的零依赖小代理：
 
@@ -18,6 +20,14 @@ MiniMax Design ──> 本地 design-bridge(127.0.0.1:9527) ──┬─ 视频�
 它利用的是官方自己留的口子：app 内 `conf/external_api_conf.yaml` 明确声明云网关地址
 可由 `CLOUD_GATEWAY_BASE_URL` 环境变量覆盖。不改 app、不破解、不改包、更新不受影响，
 `disable` 一步即可还原。
+
+## 适合谁
+
+- **Design 订阅额度不够用 / 不想为偶尔出片买订阅**：有开放平台 key 的话，按量付费，用多少扣多少
+- **手上有 Hailuo API key 的开发者**：想在 Design 的 agentic 工作流（分镜、资产、剪辑）里用自己的额度跑
+- **想看 MiniMax Design 怎么工作的人**：[docs/protocol.md](docs/protocol.md) 是完整的云网关协议逆向笔记
+
+不适合：想绕过付费的人——生成照常走你自己的 key 计费，本项目只做互操作。
 
 ## 快速开始（macOS）
 
@@ -118,6 +128,17 @@ Windows 下用系统方式设置用户环境变量 `CLOUD_GATEWAY_BASE_URL` 后�
 * `aspect_ratio` 通过追加 prompt 实现（Hailuo-02 无独立参数位）；
 * 仅劫持 MiniMax 家视频端点；kling / veo3 / wan / seedance 走官方。
   想接别的家：`lib/minimax-open.mjs` 是模板，`--record` 是工具。
+
+## Roadmap
+
+- [ ] 真实 key 的端到端生成实录（GIF/视频）
+- [ ] Windows 启用脚本（桥本体已跨平台，只差 launchctl 的替代方案）
+- [ ] 更多 provider：阿里云百炼（wan 系列）、ComfyUI 本地工作流
+- [ ] H3 参数完整映射（多参考图 / enhancement / continuation）
+- [ ] 设计一个更优雅的密钥管理（现在是明文 config.json）
+
+欢迎 PR：新增 provider 只需照着 `lib/minimax-open.mjs` 写一个同接口的类，
+用 `--record` 抓目标平台的真实交换对齐字段，测试里加一个 mock 用例即可。
 
 ## 许可
 
